@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './post-create.component.html',
+  styleUrls: ['./post-create.component.css'],
 })
 export class PostCreateComponent {
-  newPost = 'NO CONTENT';
-  ngOnInit() {}
+  enteredTitle = '';
+  enteredContent = '';
+  @Output() postCreated = new EventEmitter();
 
   onAddPost() {
-    // this.newPost = "The user's post";
-    this.newPost = "The user's post";
+    const post = { title: this.enteredTitle, content: this.enteredContent };
+    this.postCreated.emit(post);
   }
 }
